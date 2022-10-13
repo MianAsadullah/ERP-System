@@ -1,0 +1,13 @@
+.login-signup .ant-divider-inner-text {
+  display: inline-block;
+  padding: 0 1em;
+  font-size: 12px;
+  font-weight: normal;
+  opacity: 0.5;
+  margin: 12px 0;
+}
+.artwork {
+  background: url(./4970841.png) no-repeat;
+  background-size: cover;
+  height: 100vh;
+}
