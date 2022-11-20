@@ -1,49 +1,51 @@
 import {
-  DesktopOutlined,
-  FileOutlined,
-  PieChartOutlined,
-  TeamOutlined,
+  // DesktopOutlined,
+  // FileOutlined,
+  // PieChartOutlined,
+  // TeamOutlined,
   UserOutlined
 } from "@ant-design/icons"
-import { Avatar, Badge, Breadcrumb, Dropdown, Layout, Menu } from "antd"
-import React, { useState } from "react"
+import { Avatar, Badge, Breadcrumb, Button, Dropdown, Image, Input, Layout, Menu } from "antd"
+import React, { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 import "./Secondary.css"
-const { Header, Content, Footer, Sider } = Layout
-const getItem = (label, key, icon, children) => {
+const { Header, Content, Sider } = Layout
+const getItem = (label, key, icon, children, onClick) => {
   return {
     key,
     icon,
     children,
-    label
+    label,
+    onClick
   }
 }
 
-const items = [
-  getItem("Option 1", "1", <PieChartOutlined />),
-  getItem("Option 2", "2", <DesktopOutlined />),
-  getItem("User", "sub1", <UserOutlined />, [
-    getItem("Tom", "3"),
-    getItem("Bill", "4"),
-    getItem("Alex", "5")
-  ]),
-  getItem("Team", "sub2", <TeamOutlined />, [
-    getItem("Team 1", "6"),
-    getItem("Team 2", "8")
-  ]),
-  getItem("Files", "9", <FileOutlined />),
-  getItem("Option 1", "1", <PieChartOutlined />),
-  getItem("Option 2", "2", <DesktopOutlined />),
-  getItem("User", "sub1", <UserOutlined />, [
-    getItem("Tom", "3"),
-    getItem("Bill", "4"),
-    getItem("Alex", "5")
-  ]),
-  getItem("Team", "sub2", <TeamOutlined />, [
-    getItem("Team 1", "6"),
-    getItem("Team 2", "8")
-  ]),
-  getItem("Files", "9", <FileOutlined />)
-]
+// const items = [
+//   getItem("Option 1", "1", <PieChartOutlined />),
+//   getItem("Option 2", "2", <DesktopOutlined />),
+//   getItem("User", "sub1", <UserOutlined />, [
+//     getItem("Tom", "3"),
+//     getItem("Bill", "4"),
+//     getItem("Alex", "5")
+//   ]),
+//   getItem("Team", "sub2", <TeamOutlined />, [
+//     getItem("Team 1", "6"),
+//     getItem("Team 2", "8")
+//   ]),
+//   getItem("Files", "9", <FileOutlined />),
+//   getItem("Option 1", "1", <PieChartOutlined />),
+//   getItem("Option 2", "2", <DesktopOutlined />),
+//   getItem("User", "sub1", <UserOutlined />, [
+//     getItem("Tom", "3"),
+//     getItem("Bill", "4"),
+//     getItem("Alex", "5")
+//   ]),
+//   getItem("Team", "sub2", <TeamOutlined />, [
+//     getItem("Team 1", "6"),
+//     getItem("Team 2", "8")
+//   ]),
+//   getItem("Files", "9", <FileOutlined />)
+// ]
 
 const menu = (
   <Menu
@@ -69,11 +71,29 @@ const menu = (
   />
 )
 
+
+
+
 const App = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false)
+  const [numberValue, setNumberValue] = useState(null)
+  const [ImageSrc, setImageSrc] = useState("https://joeschmoe.io/api/v1/1")
+  const renderRandomNumber = (e) => {
+    // let result = Math.floor(99 * Math.random())
+    setNumberValue(e.target.value)
+
+  }
+
+  const onPressEnter = () => {
+    setImageSrc(`https://joeschmoe.io/api/v1/${numberValue}
+  `)
+  }
+
+
   return (
     <Layout className="min-h-screen  " >
       <Sider
+
         className="z-10 fixed inset-0"
         id="components-layout-demo-side"
         collapsible
@@ -85,8 +105,77 @@ const App = ({ children }) => {
           theme="dark"
           defaultSelectedKeys={["1"]}
           mode="inline"
-          items={items}
-        />
+        >
+
+          <Menu.ItemGroup>
+            <Menu.Item
+              key="dashboard"
+              icon={
+                <span>
+                  <span className="material-icons ">dashboard</span>
+                </span>
+              }
+            >
+              <Link to="/dashboard"> Dashboard</Link>
+            </Menu.Item>
+            <Menu.Item
+              key="Settings"
+              icon={
+                <span>
+                  <span className="material-icons ">settings</span>
+                </span>
+              }
+            >
+              <Link to="/organization"> Organization</Link>
+            </Menu.Item>
+            <Menu.Item
+              key="Recruitment"
+              icon={
+                <span>
+                  <span className="material-icons ">bar_chart</span>
+                </span>
+              }
+            >
+              <Link to="/recruitment">Recruitment</Link>
+            </Menu.Item>
+            <Menu.Item
+              key="Employees"
+              icon={
+                <span>
+                  <span class="material-icons">
+                    person
+                  </span>
+                </span>
+              }
+            >
+              <Link to="/employee">Employees</Link>
+            </Menu.Item>
+            {/* <Menu.Item
+              key="Employees"
+              icon={
+                <span>
+                  <span class="material-icons">
+                    person
+                  </span>
+                </span>
+              }
+            >
+              <Link to="/employee">Employees</Link>
+            </Menu.Item>
+            <Menu.Item
+              key="Employees"
+              icon={
+                <span>
+                  <span class="material-icons">
+                    person
+                  </span>
+                </span>
+              }
+            >
+              <Link to="/employee">Employees</Link>
+            </Menu.Item> */}
+          </Menu.ItemGroup>
+        </Menu>
       </Sider>
       <Layout className="site-layout" style={{
         // marginLeft: 200,
@@ -114,12 +203,29 @@ const App = ({ children }) => {
           <div
             className="site-layout-background min-h-full p-2"
           >
-            {children}
+            {/* {children} */}
+
+            <div>
+              {ImageSrc && <Image
+                width={500}
+                src={ImageSrc}
+                placeholder={
+                  <Image
+                    preview={false}
+                    src={ImageSrc}
+                    width={200}
+                  />
+                }
+              />}
+            </div>
+            {/* <div className="bg-grey text-9xl">  {number}</div> */}
+            <Input type="number" value={numberValue} onPressEnter={onPressEnter} onChange={renderRandomNumber} />
+            Click for number
           </div>
         </Content>
         {/* <Footer className="text-center">E-Commerce App ©2022</Footer> */}
       </Layout>
-    </Layout>
+    </Layout >
   )
 }
 

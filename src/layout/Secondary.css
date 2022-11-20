@@ -1,3 +1,21 @@
+#components-layout-demo-side {
+  /* flex: 0 0 145px !important;
+  max-width: 145px !important;
+  min-width: 145px !important;
+  width: 145px !important; */
+}
+
+.ant-menu-item-selected {
+  background-color: inherit !important;
+  border-left: 6px solid #1890ff !important;
+}
+.ant-menu-item-selected .ant-menu-item-icon {
+  margin-left: 18px !important;
+}
+
+.ant-menu-item {
+  padding-left: 0px !important;
+}
 #components-layout-demo-side .logo {
   height: 32px;
   margin: 16px;
@@ -16,4 +34,20 @@
 .ant-menu-root {
   max-height: 84vh !important;
   overflow-y: auto;
+  overflow-x: hidden;
+}
+.ant-menu-item a {
+  color: rgba(255, 255, 255, 1);
+}
+.ant-menu-item .ant-menu-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: rgba(255, 255, 255, 1);
+  margin-left: 24px;
+}
+.ant-menu-item .ant-menu-item-icon .material-icons {
+  font-size: 20px;
+  line-height: 12px;
 }
