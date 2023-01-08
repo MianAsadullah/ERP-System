@@ -9,10 +9,7 @@ const { Sider } = Layout
 const SiderPrimary = props => {
   const [collapsed, setCollapsed] = useState(false)
 
-  // onCollapse = (collapsed) => {
-  //   console.log(collapsed);
-  //   setState({ collapsed });
-  // };
+
 
   const onCollapse = collapsed => {
     console.log(collapsed)
